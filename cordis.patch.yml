@@ -1,0 +1,17 @@
+# dsh-plugin-balance-hud bundle patch.
+#
+# The plugin is dual-face: this host row makes Cordis mount the package, which
+# both claims the balance HTTP route and puts the package on the client-modules
+# scan list, so its `dsh.client` declaration is discovered. Everything the user
+# sees lives in exports["./client"] — the browser half.
+#
+# `inject: [webServer]` matters: without it the row can activate before the web
+# carrier exists, register no route at all, and leave the badge showing a
+# permanent "signal lost". Declaring the dependency makes Cordis park this row
+# until the carrier is live.
+
+- insert:
+    - id: balance-hud
+      name: dsh-plugin-balance-hud
+      inject: [webServer]
+

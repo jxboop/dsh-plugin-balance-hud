@@ -1,0 +1,63 @@
+{
+  "name": "dsh-plugin-balance-hud",
+  "version": "1.0.0",
+  "description": "DSH 插件：常驻右下角的科技玄幻风 DeepSeek 余额徽章。Host 半边持有 API Key 并轮询余额，浏览器半边实时展示，密钥不进浏览器。",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek",
+    "balance",
+    "hud"
+  ],
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": {
+      "default": "./lib/index.js"
+    },
+    "./client": {
+      "default": "./lib/client.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib/index.js",
+    "lib/client.js",
+    "cordis.patch.yml",
+    "install.mjs",
+    "uninstall.mjs",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "test": "node test/run.cjs",
+    "install-plugin": "node install.mjs",
+    "uninstall-plugin": "node uninstall.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jxboop/dsh-plugin-balance-hud.git"
+  },
+  "homepage": "https://github.com/jxboop/dsh-plugin-balance-hud#readme",
+  "bugs": {
+    "url": "https://github.com/jxboop/dsh-plugin-balance-hud/issues"
+  },
+  "license": "MIT",
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "4.0.2"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-sidebar"
+      ]
+    }
+  }
+}
